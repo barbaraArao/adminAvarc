@@ -16,8 +16,10 @@
                     Faça o login de administrador/moderador
                   </p>
                   <CInput
-                    placeholder="Nome de usuário"
+                    placeholder="Email"
                     autocomplete="username email"
+                    required
+                    v-model="login.email"
                   >
                     <template #prepend-content
                       ><CIcon name="cil-user"
@@ -27,6 +29,8 @@
                     placeholder="Senha"
                     type="password"
                     autocomplete="curent-password"
+                    required
+                    v-model="login.senha"
                   >
                     <template #prepend-content
                       ><CIcon name="cil-lock-locked"
@@ -34,7 +38,11 @@
                   </CInput>
                   <CRow>
                     <CCol col="6" class="text-left">
-                      <CButton color="primary" class="px-4" to="/users"
+                      <CButton
+                        color="primary"
+                        class="px-4"
+                        :disabled="this.$v.$invalid"
+                        @click="submitLogin"
                         >Login</CButton
                       >
                     </CCol>
@@ -50,10 +58,44 @@
 </template>
 
 <script>
+import { required, email /*minLength*/ } from "vuelidate/lib/validators";
+
+import axios from "axios";
 export default {
   name: "Login",
+  data() {
+    return {
+      login: {
+        email: null,
+        senha: null,
+      },
+    };
+  },
 
-  methods() {},
+  validations: {
+    login: {
+      email: { required, email },
+      senha: { required },
+    },
+  },
+
+  methods: {
+    submitLogin() {
+      if (!this.$v.$invalid) {
+        axios
+          .post(`https://opememorial.net/api/Usuarios`, this.login)
+          .then((autorizado) => {
+            if (autorizado.data.autorizado === true) {
+              localStorage.setItem("user", JSON.stringify(autorizado.data));
+              this.$router.push({ path: "/condolences" });
+            }
+          })
+          .catch((error) => {
+            alert("Falha na autenticação");
+          });
+      }
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>

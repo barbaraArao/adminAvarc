@@ -7,7 +7,7 @@
   >
     <template #toggler>
       <CHeaderNavLink to="/pages/login">
-        <div class="c-avatar">
+        <div class="c-avatar" @click="clearLocal">
           Logout
         </div>
       </CHeaderNavLink>
@@ -22,6 +22,11 @@ export default {
     return {
       itemsCount: 42,
     };
+  },
+  methods: {
+    clearLocal() {
+      localStorage.removeItem("user");
+    },
   },
 };
 </script>

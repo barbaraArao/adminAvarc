@@ -6,14 +6,24 @@
           <CForm>
             <h1>Register</h1>
             <p class="text-muted">Adicionar</p>
-            <CInput placeholder="Username" autocomplete="username">
+            <CInput
+              placeholder="Username"
+              autocomplete="username"
+              v-model="registrarModerador.nome"
+            >
               <template #prepend-content><CIcon name="cil-user"/></template>
             </CInput>
-            <CInput placeholder="Email" autocomplete="email" prepend="@" />
+            <CInput
+              placeholder="Email"
+              autocomplete="email"
+              prepend="@"
+              v-model="registrarModerador.email"
+            />
             <CInput
               placeholder="Password"
               type="password"
               autocomplete="new-password"
+              v-model="registrarModerador.senha"
             >
               <template #prepend-content
                 ><CIcon name="cil-lock-locked"
@@ -32,20 +42,6 @@
             <CButton color="success" block>Create Account</CButton>
           </CForm>
         </CCardBody>
-        <CCardFooter class="p-4">
-          <CRow>
-            <CCol col="6">
-              <CButton block color="facebook">
-                Facebook
-              </CButton>
-            </CCol>
-            <CCol col="6">
-              <CButton block color="twitter">
-                Twitter
-              </CButton>
-            </CCol>
-          </CRow>
-        </CCardFooter>
       </CCard>
     </CCol>
   </CRow>
@@ -54,5 +50,16 @@
 <script>
 export default {
   name: "RegisterUser",
+
+  data() {
+    return {
+      registrarModerador: {
+        nome: "",
+        sobrenome: "",
+        email: { required, email },
+        senha: "",
+      },
+    };
+  },
 };
 </script>

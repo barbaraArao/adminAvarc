@@ -1,11 +1,14 @@
 <template>
   <CRow>
     <CCol col="12" lg="12">
-      <CCard>
+      <CCard v-if="condolenceData.length > 0">
         <!-- <CDropdown color="danger" toggler-text="Excluir Moderador" class="m-2">
         </CDropdown> -->
+        <CCardHeader>
+          <CButton color="primary" @click="goBack">Voltar</CButton>
+        </CCardHeader>
 
-        <CCardBody v-if="condolenceData.length > 0">
+        <CCardBody style="min-height:200px">
           <CDataTable
             striped
             small
@@ -13,7 +16,29 @@
             border
             :items="computedItems"
             :fields="fields"
-          />
+          >
+            <template #status="data">
+              <td>
+                <!-- <CBadge :color="getBadge(data.item.status)">
+                  {{ data.item.status }}
+                </CBadge> -->
+                <CDropdown
+                  :toggler-text="statusSelected"
+                  class="m-2"
+                  style="position: fixed"
+                >
+                  <CDropdownItem
+                    v-for="item in statusValue"
+                    :key="item.id"
+                    :class="data"
+                    @click="changeStatus(item)"
+                  >
+                    {{ item.descricao }}</CDropdownItem
+                  >
+                </CDropdown>
+              </td>
+            </template>
+          </CDataTable>
           <template>
             <h5>Mensagem:</h5>
             <p>{{ texto }}</p>
@@ -27,17 +52,18 @@
           </template>
         </CCardBody>
 
-        <CSpinner color="primary" v-else />
         <CCardFooter>
-          <CButton color="primary" @click="goBack">Voltar</CButton>
+          <CButton color="success" @click="saveStatus"
+            >Salvar Alterações</CButton
+          >
         </CCardFooter>
       </CCard>
+      <CSpinner color="primary" v-else />
     </CCol>
   </CRow>
 </template>
 
 <script>
-import usersData from "./CondolencesData";
 import axios from "axios";
 
 export default {
@@ -56,23 +82,24 @@ export default {
       imageBytes: null,
       statusValue: null,
       statusSelected: null,
+      statusLabel: null,
+      showTable: true,
+      user: null,
     };
   },
   mounted() {
     this.id = this.$route.params.id;
     axios
-      .get(
-        ` http://avarcsp-001-site1.gtempurl.com/api/Mensagems/id?id=${this.id}`
-      )
+      .get(` https://opememorial.net/api/Mensagems/id?id=${this.id}`)
       .then((response) => {
         this.condolenceData.push(response.data);
         this.texto = response.data.texto;
         this.imageBytes = response.data.vitima.imagem;
         this.statusSelected = response.data.status;
       });
+
     this.getStatus();
   },
-  watch() {},
   computed: {
     fields() {
       return [
@@ -80,6 +107,7 @@ export default {
         { key: "nomeVitima", label: "Nome da Vítima" },
         { key: "nomeHomenageante", label: "Homenageante" },
         { key: "data", label: "Data da Publicação" },
+        { key: "status", label: "Status da condolência" },
       ];
     },
     computedItems() {
@@ -93,6 +121,18 @@ export default {
     },
   },
   methods: {
+    getBadge(status) {
+      switch (status) {
+        case "aprovado" || "Aprovado":
+          return "success";
+        case "Pendente" || "pendente":
+          return "warning";
+        case "Reprovado" || "reprovado":
+          return "danger";
+        default:
+          "priamary";
+      }
+    },
     goBack() {
       this.usersOpened
         ? this.$router.go(-1)
@@ -100,25 +140,42 @@ export default {
     },
     getStatus() {
       axios
-        .get(` http://avarcsp-001-site1.gtempurl.com/api/Status`)
+        .get(` https://opememorial.net/api/Status`)
         .then((response) => {
-          this.statusValue = response.data;
           console.log(response.data);
+          this.statusValue = response.data;
+        })
+        .catch((error) => {
+          alert(error);
         });
     },
-    changeValue(e) {
-      console.log(e);
+
+    changeStatus(item) {
+      this.user = JSON.parse(localStorage.getItem("user"));
+
+      this.statusSelected = item.descricao;
       const value = {
-        idAlteradoPor: 1,
-        status: e,
+        idAlteradoPor: this.user.id,
+        status: item.descricao,
+        id: this.id,
       };
+      this.statusLabel = value;
+    },
+
+    saveStatus() {
+      this.showTable = false;
       axios
         .put(
-          `http://avarcsp-001-site1.gtempurl.com/api/Mensagems/id?id=${e}`,
-          value
+          `https://opememorial.net/api/Mensagems/id?id=${this.id}`,
+          this.statusLabel
         )
         .then((response) => {
-          console.log(response);
+          this.showTable = true;
+          alert("Status alterado com sucesso!!");
+        })
+        .catch((error) => {
+          alert("Erro ao alterar o Status");
+          this.showTable = true;
         });
     },
   },

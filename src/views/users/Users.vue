@@ -56,7 +56,7 @@ export default {
   },
   mounted() {
     axios
-      .get(` http://avarcsp-001-site1.gtempurl.com/api/Usuarios/moderadores`)
+      .get(` https://opememorial.net/api/Usuarios/moderadores`)
       .then((response) => {
         this.items = response.data;
       });

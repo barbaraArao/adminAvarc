@@ -11,6 +11,7 @@
             hover
             border
             striped
+            :style="'min-height: 250px;'"
             :items="computedItems"
             :fields="fields"
             :items-per-page="10"
@@ -52,11 +53,9 @@ export default {
     };
   },
   mounted() {
-    axios
-      .get(` http://avarcsp-001-site1.gtempurl.com/api/Mensagems`)
-      .then((response) => {
-        this.items = response.data;
-      });
+    axios.get(` https://opememorial.net/api/Mensagems`).then((response) => {
+      this.items = response.data;
+    });
   },
   computed: {
     computedItems() {
@@ -81,12 +80,13 @@ export default {
   },
   methods: {
     getBadge(status) {
+      status = status.toUpperCase();
       switch (status) {
-        case "aprovado" || "Aprovado":
+        case "APROVADO":
           return "success";
-        case "Pendente" || "pendente":
+        case "PENDENTE":
           return "warning";
-        case "Reprovado" || "reprovado":
+        case "REPROVADO":
           return "danger";
         default:
           "priamary";

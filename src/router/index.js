@@ -21,6 +21,17 @@ const Condolence = () => import("@/views/condolences/Condolence");
 
 Vue.use(Router);
 
+function guardMyroute(to, from, next) {
+  let isAuthenticated = false;
+
+  if (localStorage.getItem("user")) isAuthenticated = true;
+  else isAuthenticated = false;
+  if (isAuthenticated) {
+    next();
+  } else {
+    next("/pages/login");
+  }
+}
 export default new Router({
   mode: "hash", // https://router.vuejs.org/api/#mode
   linkActiveClass: "active",
@@ -34,7 +45,9 @@ function configRoutes() {
       path: "/",
       redirect: "/condolences",
       name: "Home",
+      beforeEnter: guardMyroute,
       component: TheContainer,
+
       children: [
         {
           path: "registeruser",
@@ -44,6 +57,7 @@ function configRoutes() {
 
         {
           path: "users",
+
           meta: {
             label: "Moderadores",
           },
@@ -70,6 +84,8 @@ function configRoutes() {
         },
         {
           path: "condolences",
+          beforeEnter: guardMyroute,
+
           meta: {
             label: "Moderação de condolências",
           },
@@ -106,11 +122,6 @@ function configRoutes() {
         },
       },
       children: [
-        {
-          path: "404",
-          name: "Page404",
-          component: Page404,
-        },
         {
           path: "500",
           name: "Page500",
