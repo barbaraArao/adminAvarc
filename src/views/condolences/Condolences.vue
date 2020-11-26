@@ -93,7 +93,7 @@ export default {
       }
     },
     rowClicked(item, index) {
-      this.$router.push({ path: `condolences/${index + 2}` });
+      this.$router.push({ path: `condolences/${item.id}` });
     },
     pageChange(val) {
       this.$router.push({ query: { page: val } });
