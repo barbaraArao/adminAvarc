@@ -196,12 +196,12 @@ exports[`Cards.vue renders correctly 1`] = `
       class="col-sm-6 col-md-4"
     >
       <div
-        class="card border-primary"
+        class="card border-blue"
       >
         <header
           class="card-header"
         >
-          Card outline primary
+          Card outline blue
         </header>
          
         <div
@@ -320,12 +320,12 @@ exports[`Cards.vue renders correctly 1`] = `
       class="col-sm-6 col-md-4"
     >
       <div
-        class="card card-accent-primary"
+        class="card card-accent-blue"
       >
         <header
           class="card-header"
         >
-          Card with primary accent
+          Card with blue accent
         </header>
          
         <div
@@ -444,7 +444,7 @@ exports[`Cards.vue renders correctly 1`] = `
       class="col-sm-6 col-md-4"
     >
       <div
-        class="card text-center bg-primary text-white"
+        class="card text-center bg-blue text-white"
       >
         <div
           class="card-body"
@@ -628,7 +628,7 @@ exports[`Cards.vue renders correctly 1`] = `
       class="col-sm-6 col-md-4"
     >
       <div
-        class="card bg-primary text-white"
+        class="card bg-blue text-white"
       >
         <div
           class="card-body"

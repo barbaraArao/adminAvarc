@@ -1,26 +1,6 @@
 {
-  "name": "@coreui/coreui-free-vue-admin-template",
+  "name": "AvarcAdmin",
   "version": "3.1.1",
-  "description": "Open Source Bootstrap Admin Template",
-  "author": {
-    "name": "CoreUI",
-    "url": "https://coreui.io",
-    "github": "https://github.com/coreui",
-    "twitter": "https://twitter.com/core_ui"
-  },
-  "contributors": [
-    {
-      "name": "CoreUI Team",
-      "url": "https://github.com/orgs/coreui/people"
-    }
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:coreui/coreui-free-vue-admin-template.git"
-  },
-  "homepage": "http://coreui.io",
-  "copyright": "Copyright 2020 creativeLabs Łukasz Holeczek",
-  "license": "MIT",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
@@ -35,10 +15,13 @@
     "@coreui/coreui": "^3.2.2",
     "@coreui/icons": "^2.0.0-beta.5",
     "@coreui/utils": "^1.3.1",
-    "@coreui/vue": "^3.1.2",
+    "@coreui/vue": "^3.1.4",
     "@coreui/vue-chartjs": "^1.0.5",
+    "moment": "^2.29.1",
+    "v-mask": "^2.2.3",
     "vue": "~2.6.12",
     "vue-router": "~3.4.3",
+    "vuelidate": "^0.7.6",
     "vuex": "~3.5.1"
   },
   "devDependencies": {

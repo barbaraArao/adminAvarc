@@ -36,7 +36,7 @@ exports[`Dashboard.vue renders correctly 1`] = `
           <cbutton-stub
             activeclass="router-link-active"
             class="float-right"
-            color="primary"
+            color="blue"
             event="click"
             exactactiveclass="router-link-exact-active"
             routertag="a"

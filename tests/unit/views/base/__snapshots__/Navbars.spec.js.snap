@@ -317,7 +317,7 @@ exports[`Navbars.vue renders correctly 1`] = `
      
     <ccardbody-stub>
       <cnavbar-stub
-        color="primary"
+        color="blue"
         expandable="sm"
         tag="nav"
       >

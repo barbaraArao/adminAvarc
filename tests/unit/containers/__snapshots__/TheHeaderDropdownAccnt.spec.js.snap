@@ -205,7 +205,7 @@ exports[`TheHeaderDropdownAccnt.vue renders correctly 1`] = `
     <cbadge-stub
       activeclass="router-link-active"
       class="mfs-auto"
-      color="primary"
+      color="blue"
       event="click"
       exactactiveclass="router-link-exact-active"
       routertag="a"

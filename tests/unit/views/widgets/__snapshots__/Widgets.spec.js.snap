@@ -172,7 +172,7 @@ exports[`Widgets.vue renders correctly 1`] = `
       tag="div"
     >
       <cwidgeticon-stub
-        color="gradient-primary"
+        color="gradient-blue"
         header="$1.999,50"
         iconpadding="true"
         text="Income"
@@ -253,7 +253,7 @@ exports[`Widgets.vue renders correctly 1`] = `
       tag="div"
     >
       <cwidgeticon-stub
-        color="gradient-primary"
+        color="gradient-blue"
         header="$1.999,50"
         text="Income"
       >
@@ -330,7 +330,7 @@ exports[`Widgets.vue renders correctly 1`] = `
       tag="div"
     >
       <cwidgeticon-stub
-        color="gradient-primary"
+        color="gradient-blue"
         header="$1.999,50"
         text="Income"
       >
@@ -495,7 +495,7 @@ exports[`Widgets.vue renders correctly 1`] = `
     </cwidgetprogressicon-stub>
      
     <cwidgetprogressicon-stub
-      color="gradient-primary"
+      color="gradient-blue"
       header="28%"
       inverse="true"
       text="Returning Visitors"
@@ -585,7 +585,7 @@ exports[`Widgets.vue renders correctly 1`] = `
       tag="div"
     >
       <cwidgetprogressicon-stub
-        color="gradient-primary"
+        color="gradient-blue"
         header="28%"
         text="Returning Visitors"
         value="25"
@@ -701,7 +701,7 @@ exports[`Widgets.vue renders correctly 1`] = `
       tag="div"
     >
       <cwidgetprogressicon-stub
-        color="gradient-primary"
+        color="gradient-blue"
         header="28%"
         inverse="true"
         text="Returning Visitors"
@@ -789,7 +789,7 @@ exports[`Widgets.vue renders correctly 1`] = `
       >
         <cchartlinesimple-stub
           backgroundcolor="transparent"
-          bordercolor="primary"
+          bordercolor="blue"
           datapoints="10,22,34,46,58,70,46,23,45,78,34,12"
           label="Sales"
           style="height: 40px;"
@@ -844,7 +844,7 @@ exports[`Widgets.vue renders correctly 1`] = `
         text="1,123"
       >
         <cchartbarsimple-stub
-          backgroundcolor="primary"
+          backgroundcolor="blue"
           datapoints="10,22,34,46,58,70,46,23,45,78,34,12"
           label="Sales"
           style="height: 40px;"

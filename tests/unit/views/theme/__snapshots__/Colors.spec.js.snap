@@ -30,12 +30,12 @@ exports[`Colors.vue renders correctly 1`] = `
           class="mb-4 col-xs-12 col-sm-6 col-md-4 col-xl-2"
         >
           <div
-            class="theme-color w-75 rounded mb-3 bg-primary"
+            class="theme-color w-75 rounded mb-3 bg-blue"
             style="padding-top: 75%;"
           />
            
           <h6>
-            Brand Primary Color
+            Brand blue Color
           </h6>
            
           <table

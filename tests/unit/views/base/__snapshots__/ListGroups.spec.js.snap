@@ -283,7 +283,7 @@ exports[`ListGroups.vue renders correctly 1`] = `
               
               <cbadge-stub
                 activeclass="router-link-active"
-                color="primary"
+                color="blue"
                 event="click"
                 exactactiveclass="router-link-exact-active"
                 routertag="a"
@@ -309,7 +309,7 @@ exports[`ListGroups.vue renders correctly 1`] = `
               
               <cbadge-stub
                 activeclass="router-link-active"
-                color="primary"
+                color="blue"
                 event="click"
                 exactactiveclass="router-link-exact-active"
                 routertag="a"
@@ -335,7 +335,7 @@ exports[`ListGroups.vue renders correctly 1`] = `
               
               <cbadge-stub
                 activeclass="router-link-active"
-                color="primary"
+                color="blue"
                 event="click"
                 exactactiveclass="router-link-exact-active"
                 routertag="a"
@@ -392,14 +392,14 @@ exports[`ListGroups.vue renders correctly 1`] = `
              
             <clistgroupitem-stub
               activeclass="router-link-active"
-              color="primary"
+              color="blue"
               event="click"
               exactactiveclass="router-link-exact-active"
               routertag="a"
               tag="li"
               target="_self"
             >
-              This is a primary list group item
+              This is a blue list group item
             </clistgroupitem-stub>
              
             <clistgroupitem-stub
@@ -528,9 +528,9 @@ exports[`ListGroups.vue renders correctly 1`] = `
             </clistgroupitem-stub>
              
             <clistgroupitem-stub
-              accent="primary"
+              accent="blue"
               activeclass="router-link-active"
-              color="primary"
+              color="blue"
               event="click"
               exactactiveclass="router-link-exact-active"
               href="#"
@@ -538,7 +538,7 @@ exports[`ListGroups.vue renders correctly 1`] = `
               tag="li"
               target="_self"
             >
-              This is a primary list group item
+              This is a blue list group item
             </clistgroupitem-stub>
              
             <clistgroupitem-stub

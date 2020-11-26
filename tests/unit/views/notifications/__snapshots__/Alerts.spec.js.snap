@@ -43,11 +43,11 @@ exports[`Alerts.vue renders correctly 1`] = `
           <p />
            
           <calert-stub
-            color="primary"
+            color="blue"
             fade="true"
             show="true"
           >
-            Primary Alert
+            blue Alert
           </calert-stub>
            
           <calert-stub
@@ -134,12 +134,12 @@ exports[`Alerts.vue renders correctly 1`] = `
       <ccardbody-stub>
         <div>
           <calert-stub
-            color="primary"
+            color="blue"
             fade="true"
             show="true"
           >
             
-            Primary Alert with 
+            blue Alert with 
             <a
               class="alert-link"
               href="#"

@@ -253,7 +253,7 @@ exports[`Dropdowns.vue renders correctly 1`] = `
               <button
                 aria-expanded="false"
                 aria-haspopup="true"
-                class="btn dropdown-toggle btn-primary"
+                class="btn dropdown-toggle btn-blue"
                 type="button"
               >
                 Left align
@@ -297,7 +297,7 @@ exports[`Dropdowns.vue renders correctly 1`] = `
               <button
                 aria-expanded="false"
                 aria-haspopup="true"
-                class="btn dropdown-toggle btn-primary"
+                class="btn dropdown-toggle btn-blue"
                 type="button"
               >
                 Right align
@@ -827,7 +827,7 @@ exports[`Dropdowns.vue renders correctly 1`] = `
               <button
                 aria-expanded="false"
                 aria-haspopup="true"
-                class="btn dropdown-toggle btn-primary"
+                class="btn dropdown-toggle btn-blue"
                 type="button"
               >
                 Dropdown ARIA
@@ -956,10 +956,10 @@ exports[`Dropdowns.vue renders correctly 1`] = `
             <button
               aria-expanded="false"
               aria-haspopup="true"
-              class="btn dropdown-toggle btn-sm btn-primary"
+              class="btn dropdown-toggle btn-sm btn-blue"
               type="button"
             >
-              Primary
+              blue
             </button>
             <!---->
             <div

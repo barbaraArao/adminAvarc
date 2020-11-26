@@ -60,7 +60,7 @@ exports[`Login.vue renders correctly 1`] = `
                     <cbutton-stub
                       activeclass="router-link-active"
                       class="px-4"
-                      color="primary"
+                      color="blue"
                       event="click"
                       exactactiveclass="router-link-exact-active"
                       routertag="a"
@@ -110,7 +110,7 @@ exports[`Login.vue renders correctly 1`] = `
           <ccard-stub
             bodywrapper="true"
             class="text-center py-5 d-md-down-none"
-            color="primary"
+            color="blue"
             textcolor="white"
           >
             <ccardbody-stub>

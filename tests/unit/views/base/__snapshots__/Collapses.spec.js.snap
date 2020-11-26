@@ -48,7 +48,7 @@ exports[`Collapses.vue renders correctly 1`] = `
         class="card-body"
       >
         <button
-          class="btn mb-2 btn-primary"
+          class="btn mb-2 btn-blue"
           type="button"
         >
           
