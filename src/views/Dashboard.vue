@@ -10,6 +10,15 @@
             placeholder="Nome de Usuário"
             autocomplete="username"
             v-model="registrarModerador.nome"
+            required
+          >
+            <template #prepend-content><CIcon name="cil-user"/></template>
+          </CInput>
+          <CInput
+            placeholder="Nome Completo"
+            autocomplete="username"
+            v-model="registrarModerador.sobrenome"
+            required
           >
             <template #prepend-content><CIcon name="cil-user"/></template>
           </CInput>
@@ -18,12 +27,14 @@
             autocomplete="email"
             prepend="@"
             v-model="registrarModerador.email"
+            required
           />
           <CInput
             placeholder="Senha"
             type="password"
             autocomplete="new-password"
             v-model="registrarModerador.senha"
+            required
           >
             <template #prepend-content
               ><CIcon name="cil-lock-locked"
@@ -34,6 +45,8 @@
             type="password"
             autocomplete="new-password"
             class="mb-4"
+            v-model="registrarModerador.confirmarSenha"
+            required
           >
             <template #prepend-content
               ><CIcon name="cil-lock-locked"
@@ -61,40 +74,44 @@ export default {
   data() {
     return {
       registrarModerador: {
-        nome: "",
-        sobrenome: "",
-        email: "",
-        senha: "",
+        nome: null,
+        sobrenome: null,
+        email: null,
+        senha: null,
+        confirmarSenha: null,
       },
     };
   },
   validations: {
     registrarModerador: {
       nome: { required },
-      sobrenome: "",
+      sobrenome: { required },
       email: { required, email },
       senha: { required },
+      confirmarSenha: { required },
     },
   },
   methods: {
     saveUser() {
-      this.showAlert("Carregando...", "", true, false);
-      axios
-        .post(
-          `https://opememorial.net/api/Usuarios/cadastrar`,
-          this.registrarModerador
-        )
-        .then((response) => {
-          this.showAlert(
-            "Moderador adicionado com sucesso!",
-            "success",
-            false,
-            true
-          );
-        })
-        .catch((error) => {
-          this.showAlert("Erro ao adicionar moderador", "error", false, true);
-        });
+      if (!this.$v.$invalid) {
+        this.showAlert("Carregando...", "", true, false);
+        axios
+          .post(
+            `https://opememorial.net/api/Usuarios/cadastrar`,
+            this.registrarModerador
+          )
+          .then((response) => {
+            this.showAlert(
+              "Moderador adicionado com sucesso!",
+              "success",
+              false,
+              true
+            );
+          })
+          .catch((error) => {
+            this.showAlert("Erro ao adicionar moderador", "error", false, true);
+          });
+      }
     },
     goBack() {
       this.usersOpened
