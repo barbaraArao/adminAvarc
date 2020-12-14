@@ -5,7 +5,7 @@
         <!-- <CDropdown color="danger" toggler-text="Excluir Moderador" class="m-2">
         </CDropdown> -->
         <CCardHeader>
-          <h4>Detalhes da condolência nº {{ id }}</h4>
+          <h4>Detalhes do depoimento nº {{ id }}</h4>
         </CCardHeader>
 
         <CCardBody style="min-height:200px">
@@ -59,7 +59,6 @@
           >
         </CCardFooter>
       </CCard>
-      <CSpinner color="primary" v-else />
     </CCol>
   </CRow>
 </template>
@@ -86,19 +85,22 @@ export default {
       statusLabel: null,
       showTable: true,
       user: null,
+      name: null,
     };
   },
   mounted() {
-    this.id = this.$route.params.id;
     this.showAlert("Carregando...", "", true, false);
+
+    this.id = this.$route.params.id;
     axios
-      .get(` https://opememorial.net/api/Mensagems/id?id=${this.id}`)
+      .get(` https://opememorial.net/api/Depoimentos/id?id=${this.id}`)
       .then((response) => {
         this.$swal.close();
         this.condolenceData.push(response.data);
         this.texto = response.data.texto;
-        this.imageBytes = response.data.vitima.imagem;
+        this.imageBytes = response.data.fotografia;
         this.statusSelected = response.data.status;
+        this.name = response.data.nomeCompleto;
       })
       .catch((error) => {
         this.showAlert("Erro ao carregar informações", "error", false, true);
@@ -110,9 +112,8 @@ export default {
     fields() {
       return [
         { key: "id", label: this.username },
-        { key: "nomeVitima", label: "Nome da Vítima" },
-        { key: "nomeHomenageante", label: "Homenageante" },
-        { key: "data", label: "Data da Publicação" },
+        { key: "nomeCompleto", label: "Nome do Homenageado" },
+        { key: "dataCriacao", label: "Data da Publicação" },
         { key: "status", label: "Status da condolência" },
       ];
     },
@@ -120,8 +121,6 @@ export default {
       return this.condolenceData.map((item) => {
         return {
           ...item,
-          nomeVitima: item.vitima.nome,
-          nomeHomenageante: item.pessoa.nome,
         };
       });
     },
@@ -142,7 +141,7 @@ export default {
     goBack() {
       this.usersOpened
         ? this.$router.go(-1)
-        : this.$router.push({ path: "/condolences" });
+        : this.$router.push({ path: "/tributes" });
     },
     getStatus() {
       axios
@@ -174,11 +173,10 @@ export default {
 
     saveStatus() {
       this.showAlert("Carregando...", "", true, false);
-
       this.showTable = false;
       axios
         .put(
-          `https://opememorial.net/api/Mensagems/id?id=${this.id}`,
+          `https://opememorial.net/api/Depoimentos/id?id=${this.id}`,
           this.statusLabel
         )
         .then((response) => {
@@ -195,6 +193,7 @@ export default {
         title: title,
         icon: icon,
         allowOutsideClick: false,
+        // showCancelButton: false,
         showConfirmButton: confirmButton,
         onBeforeOpen: () => {
           loading ? this.$swal.showLoading() : null;

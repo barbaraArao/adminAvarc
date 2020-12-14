@@ -6,12 +6,7 @@ export default [
         _name: "CSidebarNavTitle",
         _children: ["Ações"],
       },
-      {
-        _name: "CSidebarNavItem",
-        name: "Criar Perfil Moderador",
-        to: "/registeruser",
-        icon: "cil-cursor",
-      },
+
       {
         _name: "CSidebarNavItem",
         name: "Condolências Publicadas",
@@ -20,7 +15,19 @@ export default [
       },
       {
         _name: "CSidebarNavItem",
-        name: "Perfis Moderadores",
+        name: "Depoimentos Publicados",
+        to: "/tributes",
+        icon: "cil-cursor",
+      },
+      {
+        _name: "CSidebarNavItem",
+        name: "Criar Perfil Moderador",
+        to: "/registeruser",
+        icon: "cil-cursor",
+      },
+      {
+        _name: "CSidebarNavItem",
+        name: "Exibir Moderadores",
         to: "/users",
         icon: "cil-cursor",
       },

@@ -39,9 +39,11 @@
               ><CIcon name="cil-lock-locked"
             /></template>
           </CInput>
-          <CButton color="success" block @click="saveUser"
-            >Criar Usuário</CButton
-          >
+          <CCardFooter style="display: flex; justify-content: space-between;">
+            <CButton color="primary" @click="goBack">Voltar</CButton>
+
+            <CButton color="success" @click="saveUser">Criar Usuário</CButton>
+          </CCardFooter>
         </CForm>
       </CCardBody>
     </CCard>
@@ -76,17 +78,40 @@ export default {
   },
   methods: {
     saveUser() {
+      this.showAlert("Carregando...", "", true, false);
       axios
         .post(
           `https://opememorial.net/api/Usuarios/cadastrar`,
           this.registrarModerador
         )
         .then((response) => {
-          alert("Moderador Adicionado");
+          this.showAlert(
+            "Moderador adicionado com sucesso!",
+            "success",
+            false,
+            true
+          );
         })
         .catch((error) => {
-          alert("Erro ao adicionar moderador");
+          this.showAlert("Erro ao adicionar moderador", "error", false, true);
         });
+    },
+    goBack() {
+      this.usersOpened
+        ? this.$router.go(-1)
+        : this.$router.push({ path: "/condolences" });
+    },
+    showAlert(title, icon, loading, confirmButton) {
+      this.$swal({
+        title: title,
+        icon: icon,
+        allowOutsideClick: false,
+        // showCancelButton: false,
+        showConfirmButton: confirmButton,
+        onBeforeOpen: () => {
+          loading ? this.$swal.showLoading() : null;
+        },
+      });
     },
   },
 };

@@ -8,7 +8,7 @@
     <template #toggler>
       <CHeaderNavLink to="/pages/login">
         <div class="c-avatar" @click="clearLocal">
-          Logout
+          Sair
         </div>
       </CHeaderNavLink>
     </template>

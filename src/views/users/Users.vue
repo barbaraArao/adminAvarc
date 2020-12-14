@@ -6,7 +6,7 @@
           <CRow>
             <CCol col="6" class="text-left"><h4>Moderadores</h4> </CCol>
             <CCol col="6" class="text-right">
-              <CButton color="blue" class="px-4" to="/registeruser"
+              <CButton color="primary" class="px-4" to="/registeruser"
                 >Criar moderador</CButton
               >
             </CCol>
@@ -55,10 +55,20 @@ export default {
     };
   },
   mounted() {
+    this.showAlert("Carregando...", "", true, false);
     axios
       .get(` https://opememorial.net/api/Usuarios/moderadores`)
       .then((response) => {
+        this.$swal.close();
         this.items = response.data;
+      })
+      .catch((error) => {
+        this.showAlert(
+          "Erro ao carregar lista de moderadores",
+          "error",
+          false,
+          true
+        );
       });
   },
   watch: {
@@ -83,6 +93,18 @@ export default {
     },
     pageChange(val) {
       this.$router.push({ query: { page: val } });
+    },
+    showAlert(title, icon, loading, confirmButton) {
+      this.$swal({
+        title: title,
+        icon: icon,
+        allowOutsideClick: false,
+        // showCancelButton: false,
+        showConfirmButton: confirmButton,
+        onBeforeOpen: () => {
+          loading ? this.$swal.showLoading() : null;
+        },
+      });
     },
   },
 };

@@ -3,7 +3,7 @@
     <CCol col="12" xl="12">
       <CCard>
         <CCardHeader>
-          <h4>Condolências Publicadas</h4>
+          <h4>Depoimentos Publicados</h4>
         </CCardHeader>
         <CCardBody>
           <CDataTable
@@ -39,30 +39,29 @@
 import axios from "axios";
 
 export default {
-  name: "Condolences",
+  name: "Tributes",
   data() {
     return {
       items: null,
       fields: [
-        { key: "nomeVitima", label: "Nome da vítima" },
-        { key: "nomeHomenageante", label: "Homenageante" },
-        { key: "data", label: "Data de Publicação" },
-        { key: "status", label: "Status da condolência" },
+        // { key: "nome", label: "Nome da vítima" },
+        { key: "nomeCompleto", label: "Nome" },
+        { key: "dataCriacao", label: "Data de Publicação" },
+        { key: "status", label: "Status do Depoimento" },
       ],
       activePage: 1,
     };
   },
   mounted() {
     this.showAlert("Carregando...", "", true, false);
-
     axios
-      .get(` https://opememorial.net/api/Mensagems`)
+      .get(` https://opememorial.net/api/Depoimentos`)
       .then((response) => {
         this.$swal.close();
         this.items = response.data;
       })
       .catch((error) => {
-        this.showAlert("Erro ao carregar condolências", "error", false, true);
+        this.showAlert("Erro ao carregar depoimentos", "error", false, true);
       });
   },
   computed: {
@@ -70,8 +69,6 @@ export default {
       return this.items.map((item) => {
         return {
           ...item,
-          nomeVitima: item.vitima.nome,
-          nomeHomenageante: item.pessoa.nome,
         };
       });
     },
@@ -101,7 +98,7 @@ export default {
       }
     },
     rowClicked(item, index) {
-      this.$router.push({ path: `condolences/${item.id}` });
+      this.$router.push({ path: `tributes/${item.id}` });
     },
     pageChange(val) {
       this.$router.push({ query: { page: val } });

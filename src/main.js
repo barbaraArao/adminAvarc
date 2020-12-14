@@ -9,10 +9,13 @@ import store from "./store";
 import Vuelidate from "vuelidate";
 import { VueMaskDirective } from "v-mask";
 import moment from "moment";
+import VueSweetalert2 from "vue-sweetalert2";
+import "sweetalert2/dist/sweetalert2.min.css";
 
 Vue.config.performance = true;
 Vue.use(CoreuiVue);
 Vue.use(Vuelidate);
+Vue.use(VueSweetalert2);
 Vue.directive("mask", VueMaskDirective);
 
 Vue.prototype.$log = console.log.bind(console);

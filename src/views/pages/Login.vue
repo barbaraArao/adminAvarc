@@ -82,18 +82,34 @@ export default {
   methods: {
     submitLogin() {
       if (!this.$v.$invalid) {
+        this.showAlert("Carregando...", "", true, false);
         axios
           .post(`https://opememorial.net/api/Usuarios`, this.login)
           .then((autorizado) => {
             if (autorizado.data.autorizado === true) {
+              this.$swal.close();
               localStorage.setItem("user", JSON.stringify(autorizado.data));
               this.$router.push({ path: "/condolences" });
+            } else {
+              this.showAlert("Falha na autenticação", "error", false, true);
             }
           })
           .catch((error) => {
-            alert("Falha na autenticação");
+            this.showAlert("Falha na autenticação", "error", false, true);
           });
       }
+    },
+    showAlert(title, icon, loading, confirmButton) {
+      this.$swal({
+        title: title,
+        icon: icon,
+        allowOutsideClick: false,
+        // showCancelButton: false,
+        showConfirmButton: confirmButton,
+        onBeforeOpen: () => {
+          loading ? this.$swal.showLoading() : null;
+        },
+      });
     },
   },
 };

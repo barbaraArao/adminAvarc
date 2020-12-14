@@ -19,6 +19,9 @@ const User = () => import("@/views/users/User");
 const Condolences = () => import("@/views/condolences/Condolences");
 const Condolence = () => import("@/views/condolences/Condolence");
 
+const Tributes = () => import("@/views/tributes/Tributes");
+const Tribute = () => import("@/views/tributes/Tribute");
+
 Vue.use(Router);
 
 function guardMyroute(to, from, next) {
@@ -72,14 +75,14 @@ function configRoutes() {
               name: "Moderadores",
               component: Users,
             },
-            {
-              path: ":id",
-              meta: {
-                label: "Detalhes do moderador",
-              },
-              name: "User",
-              component: User,
-            },
+            // {
+            //   path: ":id",
+            //   meta: {
+            //     label: "Detalhes do moderador",
+            //   },
+            //   name: "User",
+            //   component: User,
+            // },
           ],
         },
         {
@@ -107,6 +110,34 @@ function configRoutes() {
               },
               name: "Condolência",
               component: Condolence,
+            },
+          ],
+        },
+        {
+          path: "tributes",
+          beforeEnter: guardMyroute,
+
+          meta: {
+            label: "Moderação de depoimentos",
+          },
+          component: {
+            render(c) {
+              return c("router-view");
+            },
+          },
+          children: [
+            {
+              path: "",
+              name: "Moderação de depoimentos",
+              component: Tributes,
+            },
+            {
+              path: ":id",
+              meta: {
+                label: "Depoimentos",
+              },
+              name: "Depoimentos",
+              component: Tribute,
             },
           ],
         },
