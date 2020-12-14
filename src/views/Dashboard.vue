@@ -39,13 +39,13 @@
               ><CIcon name="cil-lock-locked"
             /></template>
           </CInput>
-          <CCardFooter style="display: flex; justify-content: space-between;">
-            <CButton color="primary" @click="goBack">Voltar</CButton>
-
-            <CButton color="success" @click="saveUser">Criar Usuário</CButton>
-          </CCardFooter>
         </CForm>
       </CCardBody>
+      <CCardFooter style="display: flex; justify-content: space-between;">
+        <CButton color="primary" @click="goBack">Voltar</CButton>
+
+        <CButton color="success" @click="saveUser">Criar Usuário</CButton>
+      </CCardFooter>
     </CCard>
   </div>
 </template>
